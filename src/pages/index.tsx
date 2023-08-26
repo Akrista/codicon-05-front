@@ -1,5 +1,9 @@
-import { Button } from '@chakra-ui/react'
+import CreateOrder from './components/createOrder'
 
 export default function Home() {
-  return <Button>EMPEZAMOS</Button>
+  return (
+    <div>
+      <CreateOrder />
+    </div>
+  )
 }
