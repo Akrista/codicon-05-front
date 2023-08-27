@@ -7,6 +7,7 @@ import {
   CardBody,
   Circle,
 } from '@chakra-ui/react'
+import pizza from '@/assets/pizza.jpg'
 
 export default function Products() {
   return (
@@ -17,18 +18,18 @@ export default function Products() {
             <Image
               objectFit="cover"
               maxW={'30%'}
-              src="https://placekitten.com/100/100"
+              src={pizza.src}
               alt="Caffe Latte"
             />
 
             <Stack>
               <CardBody>
                 <Heading size="sm" color="#5e0e8b">
-                  Pizza Nutella
+                  Pizza Peperonni
                 </Heading>
 
                 <Text fontWeight="bold" color="gray.500" fontSize=".6rem">
-                  PIZZA NUTELLA
+                  PEPERONNI
                 </Text>
                 <Text fontWeight="bold" color="gray.500" fontSize=".8rem">
                   $ 5.99

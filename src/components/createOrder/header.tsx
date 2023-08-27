@@ -1,5 +1,6 @@
 import { Heading, Stack, Image, Text, Button } from '@chakra-ui/react'
 import Link from 'next/link'
+import mac from '@/assets/mac.jpg'
 
 export default function Header({ store }) {
   return (
@@ -29,7 +30,8 @@ export default function Header({ store }) {
           <Image
             boxSize="3rem"
             borderRadius="full"
-            src="https://placekitten.com/100/100"
+            src={mac.src}
+            fit={'cover'}
             alt="Fluffybuns the destroyer"
             mr="12px"
             //  my="2"
