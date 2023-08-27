@@ -1,8 +1,13 @@
 import { Heading, Stack, Image, Text, Button } from '@chakra-ui/react'
 import Link from 'next/link'
 import mac from '@/assets/mac.jpg'
+import { FC } from 'react'
 
-export default function Header({ store }) {
+interface HeaderProps {
+  store: string
+}
+
+const Header: FC<HeaderProps> = ({ store }) => {
   return (
     <>
       <Stack
@@ -62,3 +67,5 @@ export default function Header({ store }) {
     </>
   )
 }
+
+export default Header

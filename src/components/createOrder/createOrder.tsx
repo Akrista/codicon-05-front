@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ONG } from '@/models/ong'
 
 import {
@@ -23,17 +23,9 @@ import { useFetch } from '@/hooks/useFetch'
 
 import Miserly1 from '@/assets/miserly1.gif'
 import Miserly2 from '@/assets/miserly2.gif'
-import { combo } from '@/models/combo'
+import useCombo from '@/stores/combo'
 
 const randomSrc = Math.random() < 0.5 ? Miserly1 : Miserly2
-const selectedComboData = localStorage.getItem('selectedCombo')
-let selectedCombo
-
-if (selectedComboData) {
-  selectedCombo = JSON.parse(selectedComboData)
-} else {
-  router.push('/combo')
-}
 
 function proposeDonation(subtotal: number): number {
   let changeAmmount = subtotal % 10
@@ -55,8 +47,17 @@ function proposeDonation(subtotal: number): number {
 }
 
 function CreateOrder() {
+  const router = useRouter()
+  const { combo } = useCombo()
+
+  console.log(combo)
+
+  useEffect(() => {
+    if (!combo) router.push('/combo')
+  }, [combo, router])
+
   const [ongData, setONGData] = useState<ONG[]>([])
-  const apiURL = process.env.API_ENDPOINT
+  // const apiURL = process.env.API_ENDPOINT
 
   useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
     onSuccess: (data) => {
@@ -67,11 +68,9 @@ function CreateOrder() {
   const [isButtonVisible, setIsButtonVisible] = useState(true)
 
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false)
-  const router = useRouter()
 
-  if (selectedCombo) {
-    var { subtotal, store } = selectedCombo
-  }
+  const subtotal = combo?.subtotal || 0
+  const store = combo?.store || ''
 
   const gift = proposeDonation(Number(subtotal))
   const total = Number(subtotal) + Number(gift)
@@ -142,7 +141,7 @@ function CreateOrder() {
           <ModalHeader>¿Estás seguro?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Aunque sea poco, suma a quienes mas lo necesitan, estas seguro?
+            Aunque sea poco, suma a quienes mas lo necesitan, estas seguro?
           </ModalBody>
           <ModalFooter justifyContent={'space-around'}>
             <Button

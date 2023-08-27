@@ -1,6 +1,19 @@
 import { Stack, Text, Container } from '@chakra-ui/react'
+import { FC } from 'react'
 
-export default function mountsArea({ subtotal, isDonationEnabled, gift, total }) {
+interface MountsAreaProps {
+  subtotal: number
+  isDonationEnabled: boolean
+  gift: number
+  total: number
+}
+
+const mountsArea: FC<MountsAreaProps> = ({
+  subtotal,
+  isDonationEnabled,
+  gift,
+  total,
+}) => {
   return (
     <>
       <Container borderTop={'3px solid '} borderColor={'gray.200'} padding={'3'}>
@@ -105,3 +118,5 @@ export default function mountsArea({ subtotal, isDonationEnabled, gift, total })
     </>
   )
 }
+
+export default mountsArea

@@ -2,20 +2,27 @@ import { FC } from 'react'
 import { useRadio, Card, Flex, Text, Avatar, Box, Stack } from '@chakra-ui/react'
 import { combo } from '@/models/combo'
 import { useRouter } from 'next/router'
+import useCombo from '@/stores/combo'
 
 interface ComboItemProps extends Omit<combo, 'id'> {
   isChecked: boolean
 }
 
 const ComboItem: FC<ComboItemProps> = (props) => {
+  const { setCombo } = useCombo()
+
   const { logo, name, subtotal, gift, total, store } = props
   const { getInputProps, getRadioProps } = useRadio(props as any)
   const router = useRouter()
   const handleClick = () => {
-    localStorage.setItem(
-      'selectedCombo',
-      JSON.stringify({ subtotal, total, gift, store }),
-    )
+    // localStorage.setItem(
+
+    //   'selectedCombo',
+    //   JSON.stringify({ subtotal, total, gift, store }),
+    // )
+
+    setCombo({ subtotal, total, gift, store })
+
     router.push('/order')
   }
 

@@ -47,8 +47,7 @@ export default function Products() {
             <Circle
               borderRadius={'full'}
               backgroundColor={'purple.100'}
-              height={'25px'}
-              width={'25px'}
+              size={'25px'}
             >
               <Text fontWeight="bold" color="gray.500" fontSize=".8rem">
                 1
