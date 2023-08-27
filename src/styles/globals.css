@@ -28,3 +28,7 @@ p, h1, h2, h3, h4, h5, h6 {
   background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
   background-size: 10px 10px;
 }
+
+.chakra-modal__content-container {
+  overflow: visible !important;
+}

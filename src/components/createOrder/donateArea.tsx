@@ -5,7 +5,6 @@ import {
   SlideFade,
   Box,
   Button,
-  Heading,
   Image,
   Container,
 } from '@chakra-ui/react'
@@ -66,11 +65,17 @@ export default function DonateArea() {
                 <Image
                   boxSize="2.5rem"
                   borderRadius="full"
-                  src={selectedONG.logo}
+                  src="https://static.vecteezy.com/system/resources/previews/019/869/277/non_2x/ong-letter-logo-design-on-white-background-ong-creative-circle-letter-logo-concept-ong-letter-design-vector.jpg"
                   mr="12px"
                   alt={`${selectedONG} logo`}
                 />
-                <Heading size="sm">{selectedONG.name}</Heading>
+                <Text
+                  size="sm"
+                  noOfLines={1}
+                  color={selectedONG ? 'white' : 'gray.300'}
+                >
+                  {selectedONG.name}
+                </Text>
               </Button>
             ) : (
               <Button

@@ -10,7 +10,14 @@ export default function Home() {
       alignItems="center"
       justifyContent="center"
     >
-      <Center rounded="md" bg="white" boxShadow="xl" p="16px" my="8px">
+      <Center
+        rounded="md"
+        bg="white"
+        boxShadow="xl"
+        p="16px"
+        my="8px"
+        maxWidth="100%"
+      >
         <CreateOrder />
       </Center>
     </Container>

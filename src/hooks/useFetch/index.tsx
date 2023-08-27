@@ -13,9 +13,13 @@ type Action<T> =
   | { type: 'fetched'; payload: T }
   | { type: 'error'; payload: Error }
 
+type UseFetchOptions<T> = RequestInit & {
+  onSuccess: (data: T) => void
+}
+
 export function useFetch<T = unknown>(
   url?: string,
-  options?: RequestInit,
+  options?: UseFetchOptions<T>,
 ): State<T> {
   const cache = useRef<Cache<T>>({})
 
@@ -55,6 +59,7 @@ export function useFetch<T = unknown>(
       // If a cache exists for this url, return it
       if (cache.current[url]) {
         dispatch({ type: 'fetched', payload: cache.current[url] })
+        options?.onSuccess(cache.current[url])
         return
       }
 
@@ -68,6 +73,7 @@ export function useFetch<T = unknown>(
         cache.current[url] = data
         if (cancelRequest.current) return
 
+        options?.onSuccess(data)
         dispatch({ type: 'fetched', payload: data })
       } catch (error) {
         if (cancelRequest.current) return
