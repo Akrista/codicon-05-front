@@ -119,7 +119,7 @@ export default function Login() {
                     _hover={{ borderColor: 'White' }}
                   />
                 </FormControl>
-                <Link href="/order">
+                <Link href="/combo">
                   <Button
                     borderRadius={'full'}
                     fontSize={12}
@@ -166,7 +166,7 @@ export default function Login() {
                     _hover={{ borderColor: 'White' }}
                   />
                 </FormControl>
-                <Link href="/order">
+                <Link href="/combo">
                   <Button
                     borderRadius={'full'}
                     fontSize={12}

@@ -12,7 +12,7 @@ import { useState } from 'react'
 
 export default function DonateArea() {
   const [isChecked, setIsChecked] = useState(false)
-  const [selectedOng, setSelectedOng] = useState(true)
+  const [selectedOng, setSelectedOng] = useState(false)
 
   const handleToggle = () => {
     setIsChecked(!isChecked)
