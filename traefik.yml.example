@@ -1,0 +1,20 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false # true by default
+log:
+  level: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
+api:
+  dashboard: false # true by default
+  insecure: true # Don't do this in production!
+entryPoints:
+  web:
+    address: ":80"
+
+providers:
+  docker:
+    exposedByDefault: false # Default is true
+    network: public
+  file:
+    # watch for dynamic configuration changes
+    directory: /etc/traefik
+    watch: true

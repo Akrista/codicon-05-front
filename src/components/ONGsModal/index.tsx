@@ -17,12 +17,12 @@ import {
 import { FC, useState } from 'react'
 import ONGItem from '../ONGItem'
 import { useFetch } from '@/hooks/useFetch'
-
 interface ONGsModalProps {
   isOpen: boolean
   onToggle: () => void
   onSelectONG: (ong: ONG) => void
 }
+const apiURL = process.env.API_ENDPOINT
 const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [checked, setChecked] = useState<number | undefined>(undefined)
   const [ongData, setONGData] = useState<ONG[]>([])
@@ -52,7 +52,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
     handleClose()
   }
 
-  useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
+  useFetch<ONG[]>(`${apiURL}/api/organizations`, {
     onSuccess: (data) => {
       setONGData(data)
     },
@@ -83,11 +83,12 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
                   const radio = getRadioProps({ value: id })
                   return (
                     <ONGItem
+                      logo={undefined}
                       {...radio}
                       key={id}
                       name={name}
                       description={description}
-                      isChecked={checked === id}
+                      isChecked={Number(checked) === id}
                     />
                   )
                 })}

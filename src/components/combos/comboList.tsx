@@ -15,7 +15,7 @@ const DEFAULT_COMBOS: combo[] = [
   },
   {
     name: 'Combo #2',
-    subtotal: 8.5,
+    subtotal: 12,
     gift: 1.5,
     total: 10,
     logo: 'https://static.vecteezy.com/system/resources/previews/019/869/277/non_2x/ong-letter-logo-design-on-white-background-ong-creative-circle-letter-logo-concept-ong-letter-design-vector.jpg',
@@ -24,7 +24,7 @@ const DEFAULT_COMBOS: combo[] = [
   },
   {
     name: 'Combo #3',
-    subtotal: 7.8,
+    subtotal: 15,
     gift: 2.2,
     total: 10,
     logo: 'https://static.vecteezy.com/system/resources/previews/019/869/277/non_2x/ong-letter-logo-design-on-white-background-ong-creative-circle-letter-logo-concept-ong-letter-design-vector.jpg',
@@ -33,7 +33,7 @@ const DEFAULT_COMBOS: combo[] = [
   },
   {
     name: 'Combo #4',
-    subtotal: 9.0,
+    subtotal: 13.5,
     gift: 1.0,
     total: 10,
     logo: 'https://static.vecteezy.com/system/resources/previews/019/869/277/non_2x/ong-letter-logo-design-on-white-background-ong-creative-circle-letter-logo-concept-ong-letter-design-vector.jpg',
@@ -53,6 +53,7 @@ const DEFAULT_COMBOS: combo[] = [
 
 export default function ComboList() {
   const [checked, setChecked] = useState<number | undefined>(undefined)
+
   const { getRadioProps } = useRadioGroup({
     value: checked?.toString(),
     defaultValue: undefined,
@@ -74,7 +75,7 @@ export default function ComboList() {
             total={total}
             gift={gift}
             logo={logo}
-            isChecked={checked === id}
+            isChecked={Number(checked) === id}
             store={store}
           />
         )

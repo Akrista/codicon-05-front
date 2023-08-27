@@ -1,6 +1,6 @@
 import { Stack, Text, Container } from '@chakra-ui/react'
 
-export default function mountsArea({ subtotal, total, gift, isDonationEnabled }) {
+export default function mountsArea({ subtotal, isDonationEnabled, gift, total }) {
   return (
     <>
       <Container borderTop={'3px solid '} borderColor={'gray.200'} padding={'3'}>
@@ -96,7 +96,7 @@ export default function mountsArea({ subtotal, total, gift, isDonationEnabled })
           </Stack>
           <Text>
             puedes llevar tu total a {total} donando ${gift} para la organizacion que
-            quieras
+            quieras.
           </Text>
         </Stack>
       </Container>
