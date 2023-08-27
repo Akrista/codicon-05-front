@@ -52,12 +52,13 @@ const DEFAULT_COMBOS: combo[] = [
 ]
 
 export default function ComboList() {
-  const [checked, setChecked] = useState<number | undefined>(undefined)
+  const [checked, setChecked] = useState<string | undefined>(undefined)
   const { getRadioProps } = useRadioGroup({
     value: checked,
     defaultValue: undefined,
     onChange: (newValue) => {
-      setChecked(parseInt(newValue, 10))
+      setChecked(newValue)
+      // setChecked(parseInt(newValue, 10))
     },
   })
 
@@ -75,7 +76,7 @@ export default function ComboList() {
             total={total}
             gift={gift}
             logo={logo}
-            isChecked={checked === id}
+            isChecked={Number(checked) === id}
             store={store}
           />
         )
