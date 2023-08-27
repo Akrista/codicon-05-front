@@ -1,4 +1,5 @@
 import { Heading, Stack, Image, Text, Button } from '@chakra-ui/react'
+import Link from 'next/link'
 
 export default function Header() {
   return (
@@ -40,20 +41,21 @@ export default function Header() {
             </Text>
           </Stack>
         </Stack>
-
-        <Button
-          bg="transparent"
-          color="gray.300"
-          border="2px dashed"
-          borderColor="gray.300"
-          width="120px"
-          height={'fit-content'}
-          padding={2}
-        >
-          <Text fontWeight="bold" color="gray.500" fontSize=".4rem">
-            CANCELAR ORDEN
-          </Text>
-        </Button>
+        <Link href={'/combo'}>
+          <Button
+            bg="transparent"
+            color="gray.300"
+            border="2px dashed"
+            borderColor="gray.300"
+            width="120px"
+            height={'fit-content'}
+            padding={2}
+          >
+            <Text fontWeight="bold" color="gray.500" fontSize=".4rem">
+              CANCELAR ORDEN
+            </Text>
+          </Button>
+        </Link>
       </Stack>
     </>
   )

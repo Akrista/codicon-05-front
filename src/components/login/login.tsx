@@ -9,6 +9,8 @@ import {
   FormLabel,
   Input,
   IconButton,
+  Container,
+  VStack,
 } from '@chakra-ui/react'
 import Codicon from '@/assets/codicon.png'
 
@@ -35,7 +37,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <Container maxW="sm" backgroundColor={'teal.500'}>
       <Image
         objectFit="cover"
         width={'100%'}
@@ -43,15 +45,10 @@ export default function Login() {
         30%"
         src={Codicon.src}
         alt="Codicon"
-        position={'absolute'}
+        position={'sticky'}
       />
-      <Stack
-        height={'100vh'}
-        width={'100vw'}
-        backgroundColor={'teal.500'}
-        justifyContent={'flex-end'}
-      >
-        <Stack padding="50px" backgroundColor={'teal.500'} zIndex={99}>
+      <VStack maxW="sm" height={'78vh'} zIndex={99} justifyContent={'flex-end'}>
+        <VStack padding="10px" zIndex={99} backgroundColor={'teal.500'}>
           {!showRegisterForm && !showLoginForm && (
             <>
               <Button
@@ -180,8 +177,8 @@ export default function Login() {
               </form>
             </>
           )}
-        </Stack>
-      </Stack>
-    </>
+        </VStack>
+      </VStack>
+    </Container>
   )
 }
