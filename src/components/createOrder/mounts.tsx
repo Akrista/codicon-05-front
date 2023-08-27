@@ -94,10 +94,12 @@ export default function mountsArea({ subtotal, isDonationEnabled, gift, total })
               </Text>
             )}
           </Stack>
-          <Text>
-            puedes llevar tu total a {total} donando ${gift} para la organizacion que
-            quieras.
-          </Text>
+          {gift !== 0 ? (
+            <Text>
+              puedes llevar tu total a {total} donando ${gift} para la organizacion
+              que quieras.
+            </Text>
+          ) : null}
         </Stack>
       </Container>
     </>
