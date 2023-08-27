@@ -28,7 +28,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [ongData, setONGData] = useState<ONG[]>([])
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    value: checked,
+    value: checked?.toString(),
     defaultValue: undefined,
     onChange: (newValue) => {
       const parsedNewValue = parseInt(newValue, 10)
@@ -42,7 +42,10 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   }
 
   const handleSelectONG = () => {
-    const foundONG = ongData.find(({ id }) => id === checked)
+    const foundONG = ongData.find(({ id }) => {
+      return id === checked
+    })
+
     if (foundONG) onSelectONG(foundONG)
 
     setChecked(undefined)
