@@ -154,7 +154,7 @@ export default function CreateOrder() {
           <ModalHeader>¿Estás seguro?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image src={randomSrc.src}></Image>
+            <Image alt="Codicon" src={randomSrc.src}></Image>
           </ModalBody>
           <ModalFooter justifyContent={'space-around'}>
             {isButtonVisible ? (
