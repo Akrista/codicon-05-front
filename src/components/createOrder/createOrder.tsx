@@ -18,7 +18,7 @@ import Header from './header'
 import Mounts from './mounts'
 import Products from './selectedProducts'
 import { useRouter } from 'next/router'
-import { user } from '@/models/user'
+//import { user } from '@/models/user'
 import { useFetch } from '@/hooks/useFetch'
 
 import Miserly1 from '@/assets/miserly1.gif'
