@@ -1,9 +1,13 @@
 import type { AppProps } from 'next/app'
 import { Montserrat } from 'next/font/google'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme } from '@chakra-ui/react'
+import '../styles/globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 const theme = extendTheme({
+  sizes: {
+    sm: '28rem',
+  },
   colors: {
     brand: {
       50: '#229171',
@@ -22,7 +26,9 @@ const theme = extendTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <Box className="app-bg">
+        <Component {...pageProps} />
+      </Box>
     </ChakraProvider>
   )
 }

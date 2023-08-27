@@ -1,4 +1,4 @@
-import { Heading, Stack, Image, Text, Button, Container } from '@chakra-ui/react'
+import { Stack, Text, Container } from '@chakra-ui/react'
 
 export default function mountsArea() {
   return (

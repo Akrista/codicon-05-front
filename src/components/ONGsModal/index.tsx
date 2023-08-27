@@ -16,11 +16,6 @@ import {
 import { FC, useState } from 'react'
 import ONGItem from '../ONGItem'
 
-interface ONGsModalProps {
-  isOpen: boolean
-  onToggle: () => void
-}
-
 const DEFAULT_ONGS: ONG[] = [
   {
     name: 'My ONG',
@@ -80,26 +75,32 @@ const DEFAULT_ONGS: ONG[] = [
   },
 ]
 
-const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle }) => {
+interface ONGsModalProps {
+  isOpen: boolean
+  onToggle: () => void
+  onSelectONG: (ong: ONG) => void
+}
+const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [checked, setChecked] = useState<number | undefined>(undefined)
   const { getRootProps, getRadioProps } = useRadioGroup({
     value: checked,
     defaultValue: undefined,
     onChange: (newValue) => {
-      setChecked(parseInt(newValue, 10))
+      const parsedNewValue = parseInt(newValue, 10)
+      setChecked(parsedNewValue)
     },
   })
   const group = getRootProps()
-
-  console.log(checked)
-
   const handleClose = () => {
+    const foundONG = DEFAULT_ONGS.find(({ id }) => id === checked)
+    if (foundONG) onSelectONG(foundONG)
+
     setChecked(undefined)
     onToggle()
   }
 
   return (
-    <Container maxW="sm">
+    <Container maxWidth="sm">
       <Modal
         onClose={handleClose}
         size="full"
@@ -108,7 +109,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle }) => {
         scrollBehavior="inside"
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxWidth="sm" height="100vh">
           <ModalCloseButton />
 
           <ModalHeader marginBottom="20px">

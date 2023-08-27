@@ -7,19 +7,24 @@ import {
   Button,
   Heading,
   Image,
+  Container,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import ONGsModal from './ONGsModal'
+import { ONG } from '@/models/ong'
 
 export default function DonateArea() {
   const [isChecked, setIsChecked] = useState(false)
-  const [selectedOng, setSelectedOng] = useState(true)
+  const [selectedONG, setSelectedONG] = useState<ONG | null>(null)
+  const [showONGsModal, setShowONGsModal] = useState(false)
 
   const handleToggle = () => {
+    setSelectedONG(null)
     setIsChecked(!isChecked)
   }
 
   return (
-    <>
+    <Container>
       <Flex justifyContent="space-between">
         <Text color="#5e0e8b" fontWeight="800" lineHeight="1.75rem">
           REALIZAR DONACION
@@ -34,7 +39,7 @@ export default function DonateArea() {
       <SlideFade in={isChecked} offsetY="20px">
         <Box p="20px" color="white" mt="4" bg="teal.500" rounded="md" shadow="md">
           <Flex justifyContent="center">
-            {selectedOng ? (
+            {selectedONG ? (
               <Button
                 bg="transparent"
                 color="gray.300"
@@ -42,20 +47,29 @@ export default function DonateArea() {
                 borderColor="gray.300"
                 width="fit-content"
                 padding={3}
+                isDisabled={!isChecked}
                 height="fit-content"
-                spacing={0}
                 w="100%"
-                direction="row"
                 alignItems="center"
+                _disabled={{
+                  cursor: 'default',
+                }}
+                _hover={{
+                  bg: 'transparent',
+                  color: 'gray.100',
+                  borderColor: 'gray.100',
+                }}
+                onClick={() => {
+                  setShowONGsModal(true)
+                }}
               >
                 <Image
                   boxSize="2.5rem"
                   borderRadius="full"
-                  src="https://placekitten.com/100/100"
+                  src={selectedONG.logo}
                   mr="12px"
-                  //  my="2"
                 />
-                <Heading size="sm">Organizacion QuieroPlata</Heading>
+                <Heading size="sm">{selectedONG.name}</Heading>
               </Button>
             ) : (
               <Button
@@ -65,6 +79,18 @@ export default function DonateArea() {
                 borderColor="gray.300"
                 width="300px"
                 height={16}
+                isDisabled={!isChecked}
+                _disabled={{
+                  cursor: 'default',
+                }}
+                _hover={{
+                  bg: 'transparent',
+                  color: 'gray.100',
+                  borderColor: 'gray.100',
+                }}
+                onClick={() => {
+                  setShowONGsModal(true)
+                }}
               >
                 Seleccionar ONG{' '}
               </Button>
@@ -72,6 +98,15 @@ export default function DonateArea() {
           </Flex>
         </Box>
       </SlideFade>
-    </>
+      <ONGsModal
+        onSelectONG={(ong) => {
+          setSelectedONG(ong)
+        }}
+        isOpen={showONGsModal}
+        onToggle={() => {
+          setShowONGsModal(!showONGsModal)
+        }}
+      />
+    </Container>
   )
 }
