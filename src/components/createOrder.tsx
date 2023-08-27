@@ -1,8 +1,8 @@
-import DonateArea from './donateArea'
-import Header from './header'
-import Mounts from './mounts'
-import Products from './selectedProducts'
 import { VStack, Button } from '@chakra-ui/react'
+import Header from './createOrder/header'
+import Products from './createOrder/selectedProducts'
+import Mounts from './createOrder/mounts'
+import DonateArea from './createOrder/donateArea'
 
 export default function CreateOrder() {
   return (
