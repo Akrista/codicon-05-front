@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import {
-  Text,
   Image,
   Button,
   FormControl,
@@ -9,46 +8,53 @@ import {
   Container,
   VStack,
   FormErrorMessage,
+  Text,
 } from '@chakra-ui/react'
 import Codicon from '@/assets/codicon.png'
-
-import Link from 'next/link'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import useUser from '@/stores/user'
 import { useRouter } from 'next/router'
 import { emailRegexPattern } from '@/constants/forms'
-interface LoginForm {
+import useUser from '@/stores/user'
+import Link from 'next/link'
+
+interface RegisterForm {
+  name: string
   email: string
   password: string
 }
 
-export default function Login() {
+export default function Register() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<LoginForm>()
+  } = useForm<RegisterForm>()
 
   const router = useRouter()
+
   const { user, setUser } = useUser()
 
   useEffect(() => {
     if (user) router.push('/combo')
   }, [user, router])
 
-  const onSubmit: SubmitHandler<LoginForm> = async (formData) => {
-    const response = await fetch('http://fundease.duckdns.org:3001/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+  const onSubmit: SubmitHandler<RegisterForm> = async (formData) => {
+    const response = await fetch(
+      'http://fundease.duckdns.org:3001/api/auth/register',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       },
-      body: JSON.stringify(formData),
-    })
-
+    )
     const datica = await response.json()
+
     if (!datica.errors) {
       setUser({
         email: formData.email,
+        name: formData.name,
         token: datica?.token,
       })
 
@@ -58,14 +64,26 @@ export default function Login() {
 
   return (
     <Container
+      maxW="sm"
+      minH="100vh"
       display="flex"
       flexDirection="column"
-      maxW="sm"
-      minHeight="100vh"
       backgroundColor={'teal.500'}
     >
-      <Image objectFit="cover" width="100%" src={Codicon.src} alt="Codicon" />
-      <VStack width="100%" maxW="sm" height="100%" zIndex={99} paddingBottom="16px">
+      <Image
+        objectFit="cover"
+        width={'100%'}
+        marginTop="20px"
+        src={Codicon.src}
+        alt="Codicon"
+      />
+      <VStack
+        width="100%"
+        maxW="sm"
+        height="100%"
+        zIndex={99}
+        justifyContent={'flex-end'}
+      >
         <VStack width="100%" padding="10px" zIndex={99} backgroundColor={'teal.500'}>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -76,6 +94,24 @@ export default function Login() {
               gap: '12px',
             }}
           >
+            <FormControl isInvalid={!!errors.name}>
+              <FormLabel color="white" htmlFor="name">
+                Nombre
+              </FormLabel>
+              <Input
+                id="name"
+                type="text"
+                bg="gray.100"
+                _focus={{ borderColor: 'White' }}
+                _hover={{ borderColor: 'White' }}
+                {...register('name', {
+                  required: 'Este campo es requerido',
+                })}
+              />
+              <FormErrorMessage fontWeight={600}>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
+            </FormControl>
             <FormControl isInvalid={!!errors.email}>
               <FormLabel color="white" htmlFor="email">
                 Correo Electrónico
@@ -107,6 +143,14 @@ export default function Login() {
                 _hover={{ borderColor: 'White' }}
                 {...register('password', {
                   required: 'Este campo es requerido',
+                  minLength: {
+                    value: 8,
+                    message: 'La contraseña debe tener al menos 8 carácteres',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'La contraseña debe ser de máximo 20 carácteres',
+                  },
                 })}
               />
               <FormErrorMessage fontWeight={600}>
@@ -120,18 +164,19 @@ export default function Login() {
               type="submit"
               marginTop="16px"
             >
-              Login
+              Registrar
             </Button>
           </form>
         </VStack>
-        <Link href="/register">
+
+        <Link href="/login">
           <Text
             textDecoration="underline"
             _hover={{
               color: 'white',
             }}
           >
-            ¿No tienes cuenta?
+            ¿Ya tienes una cuenta?
           </Text>
         </Link>
       </VStack>

@@ -52,17 +52,16 @@ const DEFAULT_COMBOS: combo[] = [
 ]
 
 export default function ComboList() {
-  const [checked, setChecked] = useState<string | undefined>(undefined)
+  const [checked, setChecked] = useState<number | undefined>(undefined)
+
   const { getRadioProps } = useRadioGroup({
-    value: checked,
+    value: checked?.toString(),
     defaultValue: undefined,
     onChange: (newValue) => {
-      setChecked(newValue)
-      // setChecked(parseInt(newValue, 10))
+      setChecked(parseInt(newValue, 10))
     },
   })
 
-  console.log(checked)
   return (
     <Container maxW="sm" h={'100vh'} backgroundColor={'white'}>
       {DEFAULT_COMBOS.map(({ name, subtotal, total, gift, logo, id, store }) => {
