@@ -73,7 +73,7 @@ certificatesResolvers:
 providers:
   docker:
     exposedByDefault: false # Default is true
-    network: traefik_public
+    network: codicon-05-front_public
   file:
     # watch for dynamic configuration changes
     directory: /etc/traefik
