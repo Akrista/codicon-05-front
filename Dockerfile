@@ -1,11 +1,3 @@
-FROM node:16-alpine
-RUN mkdir -p /app
-WORKDIR /app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD ["npm", "run", "dev"]
-
 # using staged builds
 FROM node:16-buster as builder
 # make the directory where the project files will be stored
