@@ -11,6 +11,7 @@ services:
       - "traefik.port=80"
       - "traefik.http.routers.fundease.entrypoints=web"
       - "traefik.http.routers.fundease.rule=Host(`${PUBLIC_URL}`)"
+      - "traefik.http.services.fundease.loadbalancer.server.port=80"
     restart: unless-stopped
     networks:
       - public
@@ -28,7 +29,7 @@ services:
       - ./config/traefik.yml:/etc/traefik/traefik.yml
       - ./data:/etc/traefik
       - ./certs:/le
-    labels:
+    #labels:
       # - 'traefik.http.routers.traefik.rule=Host(`${PUBLIC_URL}`)'
       # - 'traefik.http.routers.traefik.service=api@internal'
       # - "traefik.http.routers.heimdall.tls=true"
