@@ -2,16 +2,18 @@ import { useState } from 'react'
 import {
   Heading,
   Stack,
-  Image,
   Text,
+  Image,
   Button,
   FormControl,
   FormLabel,
   Input,
   IconButton,
 } from '@chakra-ui/react'
+import Codicon from '@/assets/codicon.png'
 
 import { ArrowBackIcon } from '@chakra-ui/icons'
+import Link from 'next/link'
 
 export default function Login() {
   const [showRegisterForm, setShowRegisterForm] = useState(false)
@@ -37,8 +39,10 @@ export default function Login() {
       <Image
         objectFit="cover"
         width={'100%'}
-        src="https://www.nicepng.com/png/full/97-975597_ftestickers-people-woman-jump-dance-danial8986-jumping-in.png"
-        alt="Caffe Latte"
+        top="
+        30%"
+        src={Codicon.src}
+        alt="Codicon"
         position={'absolute'}
       />
       <Stack
@@ -115,15 +119,17 @@ export default function Login() {
                     _hover={{ borderColor: 'White' }}
                   />
                 </FormControl>
-                <Button
-                  borderRadius={'full'}
-                  fontSize={12}
-                  width={'100%'}
-                  onClick={handleRegisterClick}
-                  type="submit"
-                >
-                  Registrarse{' '}
-                </Button>
+                <Link href="/order">
+                  <Button
+                    borderRadius={'full'}
+                    fontSize={12}
+                    width={'100%'}
+                    onClick={handleRegisterClick}
+                    type="submit"
+                  >
+                    Registrarse{' '}
+                  </Button>
+                </Link>
               </form>
             </>
           )}
@@ -160,15 +166,17 @@ export default function Login() {
                     _hover={{ borderColor: 'White' }}
                   />
                 </FormControl>
-                <Button
-                  borderRadius={'full'}
-                  fontSize={12}
-                  width={'100%'}
-                  onClick={handleRegisterClick}
-                  type="submit"
-                >
-                  Iniciar sesion
-                </Button>
+                <Link href="/order">
+                  <Button
+                    borderRadius={'full'}
+                    fontSize={12}
+                    width={'100%'}
+                    onClick={handleRegisterClick}
+                    type="submit"
+                  >
+                    Iniciar sesion
+                  </Button>
+                </Link>
               </form>
             </>
           )}
