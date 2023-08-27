@@ -3,11 +3,8 @@ import {
   Stack,
   Image,
   Text,
-  Button,
   Card,
   CardBody,
-  CardFooter,
-  Container,
   Circle,
 } from '@chakra-ui/react'
 
@@ -16,7 +13,7 @@ export default function Products() {
     <>
       <Stack spacing={0} backgroundColor="blue.100" padding={5}>
         <Card direction={'row'} overflow="hidden" variant="outline">
-          <Stack direction={'row'} overflow="hidden" variant="outline">
+          <Stack direction={'row'} overflow="hidden">
             <Image
               objectFit="cover"
               maxW={'30%'}

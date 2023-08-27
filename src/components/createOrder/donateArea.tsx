@@ -10,7 +10,7 @@ import {
   Container,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import ONGsModal from './ONGsModal'
+import ONGsModal from '../ONGsModal'
 import { ONG } from '@/models/ong'
 
 export default function DonateArea() {
@@ -68,6 +68,7 @@ export default function DonateArea() {
                   borderRadius="full"
                   src={selectedONG.logo}
                   mr="12px"
+                  alt={`${selectedONG} logo`}
                 />
                 <Heading size="sm">{selectedONG.name}</Heading>
               </Button>
