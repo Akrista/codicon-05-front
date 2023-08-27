@@ -18,7 +18,7 @@ import Header from './header'
 import Mounts from './mounts'
 import Products from './selectedProducts'
 import { useRouter } from 'next/router'
-//import { user } from '@/models/user'
+// import { user } from '@/models/user'
 import { useFetch } from '@/hooks/useFetch'
 
 import Miserly1 from '@/assets/miserly1.gif'
@@ -69,7 +69,7 @@ export default function CreateOrder() {
       setIsModalOpen(true)
     } else {
       // Complete the order
-      /* fetch('http://fundease.duckdns.org:3001/api/pay', {
+      /*  fetch('http://fundease.duckdns.org:3001/api/pay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default function CreateOrder() {
           },
           organization_id: 2,
         }),
-      })*/
+      }) */
       router.push('/success')
     }
   }
