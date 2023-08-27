@@ -1,20 +1,6 @@
-import { useState } from 'react'
-import {
-  Heading,
-  Stack,
-  Text,
-  Image,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  IconButton,
-  Container,
-  VStack,
-} from '@chakra-ui/react'
+import { Heading, Text, Image, Button, Container, VStack } from '@chakra-ui/react'
 import Five from '@/assets/five.gif'
 
-import { ArrowBackIcon } from '@chakra-ui/icons'
 import Link from 'next/link'
 
 export default function SuccessPage() {

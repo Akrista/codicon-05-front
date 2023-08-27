@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { ONG } from '@/models/ong'
+
 import {
   VStack,
   Button,
@@ -8,6 +10,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  Image,
   ModalCloseButton,
 } from '@chakra-ui/react'
 import DonateArea from './donateArea'
@@ -16,14 +19,12 @@ import Mounts from './mounts'
 import Products from './selectedProducts'
 import { useRouter } from 'next/router'
 import { user } from '@/models/user'
+import { useFetch } from '@/hooks/useFetch'
 
-const DEFAULT_USER: user = {
-  name: ' TEST USER',
-  email: 'user@test.com',
-  id: 9999,
-  credit: 100,
-  password: '123456',
-}
+import Miserly1 from '@/assets/miserly1.gif'
+import Miserly2 from '@/assets/miserly2.gif'
+
+const randomSrc = Math.random() < 0.5 ? Miserly1 : Miserly2
 
 function proposeDonation(subtotal: number): number {
   let changeAmmount = subtotal % 10
@@ -31,7 +32,6 @@ function proposeDonation(subtotal: number): number {
   if (changeAmmount > 5) {
     changeAmmount -= 5
   }
-
   if (changeAmmount === 0 || changeAmmount === 1 || changeAmmount === 2) {
     return 0
   } else if (changeAmmount < 1) {
@@ -46,6 +46,17 @@ function proposeDonation(subtotal: number): number {
 }
 
 export default function CreateOrder() {
+  const [ongData, setONGData] = useState<ONG[]>([])
+
+  useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
+    onSuccess: (data) => {
+      setONGData(data)
+      // alert('het')
+    },
+  })
+  const [isButtonVisible, setIsButtonVisible] = useState(true)
+
+  const [isSecondModalOpen, setIsSecondModalOpen] = useState(false)
   const router = useRouter()
   const { subtotal, store } = router.query
   const gift = proposeDonation(Number(subtotal))
@@ -83,7 +94,7 @@ export default function CreateOrder() {
 
   const handleConfirmNoDonation = () => {
     setIsModalOpen(false)
-    // Complete the order
+    setIsSecondModalOpen(true)
   }
 
   return (
@@ -96,7 +107,12 @@ export default function CreateOrder() {
         gift={gift}
         isDonationEnabled={isDonationEnabled}
       />
-      <DonateArea onToggleDonation={setIsDonationEnabled} gift={gift} />
+      <DonateArea
+        onToggleDonation={setIsDonationEnabled}
+        isDonationEnabled={isDonationEnabled}
+        gift={gift}
+        ongData={ongData}
+      />
       <Button
         width="100%"
         colorScheme="brand"
@@ -115,16 +131,51 @@ export default function CreateOrder() {
             ¿Realmente estás seguro de no querer apoyar a quienes te necesitan?
           </ModalBody>
           <ModalFooter justifyContent={'space-around'}>
-            <Button colorScheme="red" onClick={handleConfirmNoDonation}>
+            <Button colorScheme="red" onClick={handleConfirmNoDonation} mr={3}>
               No quiero donar
             </Button>
             <Button
               backgroundColor="teal.500"
               color={'white'}
-              mr={3}
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false)
+                setIsDonationEnabled(true)
+              }}
             >
               Cambie de opinión
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isSecondModalOpen} onClose={() => setIsSecondModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>¿Estás seguro?</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Image src={randomSrc.src}></Image>
+          </ModalBody>
+          <ModalFooter justifyContent={'space-around'}>
+            {isButtonVisible ? (
+              <Button
+                colorScheme="red"
+                onClick={() => setIsButtonVisible(false)}
+                fontSize={9}
+              >
+                Soy una persona horrible
+              </Button>
+            ) : null}
+            <Button
+              backgroundColor="teal.500"
+              color={'white'}
+              fontSize={12}
+              onClick={() => {
+                setIsSecondModalOpen(false)
+                setIsDonationEnabled(true)
+              }}
+            >
+              Reflexioné y quiero donar
             </Button>
           </ModalFooter>
         </ModalContent>

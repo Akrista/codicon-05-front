@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import {
-  Heading,
-  Stack,
-  Text,
   Image,
   Button,
   FormControl,
-  FormLabel,
   Input,
   IconButton,
   Container,

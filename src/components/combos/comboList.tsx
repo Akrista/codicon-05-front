@@ -1,19 +1,6 @@
 import { combo } from '@/models/combo'
-import {
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-  Container,
-  VStack,
-  Center,
-  useRadioGroup,
-} from '@chakra-ui/react'
-import { FC, useState } from 'react'
+import { Container, useRadioGroup } from '@chakra-ui/react'
+import { useState } from 'react'
 import ComboItem from './combo'
 
 const DEFAULT_COMBOS: combo[] = [
@@ -66,14 +53,13 @@ const DEFAULT_COMBOS: combo[] = [
 
 export default function ComboList() {
   const [checked, setChecked] = useState<number | undefined>(undefined)
-  const { getRootProps, getRadioProps } = useRadioGroup({
+  const { getRadioProps } = useRadioGroup({
     value: checked,
     defaultValue: undefined,
     onChange: (newValue) => {
       setChecked(parseInt(newValue, 10))
     },
   })
-  const group = getRootProps()
 
   console.log(checked)
   return (

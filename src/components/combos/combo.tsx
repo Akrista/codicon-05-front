@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { useRadio, Card, Flex, Text, Avatar, Box, Stack } from '@chakra-ui/react'
 import { combo } from '@/models/combo'
 import Link from 'next/link'
-import CreateOrder from '@components/createOrder/createOrder'
 
 interface ComboItemProps extends Omit<combo, 'id'> {
   isChecked: boolean
