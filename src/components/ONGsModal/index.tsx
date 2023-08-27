@@ -22,7 +22,6 @@ interface ONGsModalProps {
   onToggle: () => void
   onSelectONG: (ong: ONG) => void
 }
-const apiURL = process.env.API_ENDPOINT
 
 const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [checked, setChecked] = useState<number | undefined>(undefined)
@@ -50,7 +49,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
     handleClose()
   }
 
-  useFetch<ONG[]>(`${apiURL}/api/organizations`, {
+  useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
     onSuccess: (data) => {
       setONGData(data)
     },

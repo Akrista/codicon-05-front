@@ -12,12 +12,14 @@ import { useState, useEffect } from 'react'
 import ONGsModal from '../ONGsModal'
 import { ONG } from '@/models/ong'
 interface DonateAreaProps {
+  onToggleDonation: (isChecked: boolean) => void
   gift: number
   ongData: ONG[]
   isDonationEnabled: boolean
 }
 
 export default function DonateArea({
+  onToggleDonation,
   gift,
   ongData,
   isDonationEnabled,
@@ -37,6 +39,7 @@ export default function DonateArea({
 
   const handleToggle = () => {
     setIsChecked(!isChecked)
+    onToggleDonation(!isChecked)
   }
 
   return (
