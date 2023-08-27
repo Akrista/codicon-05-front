@@ -58,7 +58,20 @@ export default function CreateOrder() {
 
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false)
   const router = useRouter()
-  const { subtotal, store } = router.query
+
+  const selectedComboData = localStorage.getItem('selectedCombo')
+  let selectedCombo
+
+  if (selectedComboData) {
+    selectedCombo = JSON.parse(selectedComboData)
+  } else {
+    // Handle the case where the selected combo data is not found in localStorage
+  }
+
+  if (selectedCombo) {
+    var { subtotal, store } = selectedCombo
+  }
+
   const gift = proposeDonation(Number(subtotal))
   const total = Number(subtotal) + Number(gift)
   const [isModalOpen, setIsModalOpen] = useState(false)
