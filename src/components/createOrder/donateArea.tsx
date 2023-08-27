@@ -35,14 +35,26 @@ export default function DonateArea({ onToggleDonation, gift }: DonateAreaProps) 
           <Text color="#5e0e8b" fontWeight="800" lineHeight="1.75rem">
             REALIZAR DONACION
           </Text>
-          <Switch
-            colorScheme="teal"
-            size="lg"
-            isChecked={isChecked}
-            onChange={handleToggle}
-          />
+          {gift === 0 ? (
+            <Switch
+              colorScheme="teal"
+              size="lg"
+              disabled={true}
+              isChecked={false}
+              onChange={handleToggle}
+              isDisabled
+            />
+          ) : (
+            <Switch
+              colorScheme="teal"
+              size="lg"
+              isChecked={isChecked}
+              onChange={handleToggle}
+            />
+          )}
         </Flex>
-        {isChecked ? (
+
+        {isChecked && gift === 0 ? (
           <SlideFade in={isChecked} offsetY="20px">
             <Box
               p="20px"

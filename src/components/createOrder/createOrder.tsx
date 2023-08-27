@@ -16,9 +16,30 @@ import Mounts from './mounts'
 import Products from './selectedProducts'
 import { useRouter } from 'next/router'
 
+function proposeDonation(subtotal) {
+  let changeAmmount = subtotal % 10
+  if (changeAmmount > 5) {
+    changeAmmount -= 5
+  }
+
+  if (changeAmmount === 0 || changeAmmount === 1 || changeAmmount === 2) {
+    return 0
+  } else if (changeAmmount < 1) {
+    return 1 - changeAmmount
+  } else if (changeAmmount < 2) {
+    return 2 - changeAmmount
+  } else if (changeAmmount < 3) {
+    return 3 - changeAmmount
+  } else {
+    return 5 - changeAmmount
+  }
+}
+
 export default function CreateOrder() {
   const router = useRouter()
-  const { subtotal, total, gift, store } = router.query
+  const { subtotal, store } = router.query
+  const gift = proposeDonation(subtotal)
+  const total = Number(subtotal) + Number(gift)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDonationEnabled, setIsDonationEnabled] = useState(true)
 
