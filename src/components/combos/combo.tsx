@@ -57,10 +57,17 @@ const ComboItem: FC<ComboItemProps> = (props) => {
                 boxShadow={checked ? '0 0 0 3px #37b38f' : undefined}
               />
               <Text textAlign={'center'} fontWeight={checked ? 600 : 400}>
-                {name}
+                {store}
               </Text>
             </Flex>
             <Flex flexDirection="column" width={'100%'}>
+              <Text
+                mb={'10px'}
+                textAlign={'center'}
+                fontWeight={checked ? 600 : 400}
+              >
+                {name}
+              </Text>
               <Stack
                 mb="1"
                 width={'100%'}
@@ -73,34 +80,6 @@ const ComboItem: FC<ComboItemProps> = (props) => {
                 </Text>
                 <Text ml={'5'} fontWeight="bold" color="gray.500" fontSize=".8rem">
                   ${subtotal}
-                </Text>
-              </Stack>
-              <Stack
-                mb="1"
-                width={'100%'}
-                spacing={0}
-                direction={'row'}
-                justifyContent={'space-between'}
-              >
-                <Text fontWeight="bold" color="gray.500" fontSize=".8rem">
-                  vuelto
-                </Text>
-                <Text ml={'5'} fontWeight="bold" color="gray.500" fontSize=".8rem">
-                  ${gift}
-                </Text>
-              </Stack>
-              <Stack
-                mb="1"
-                width={'100%'}
-                spacing={0}
-                direction={'row'}
-                justifyContent={'space-between'}
-              >
-                <Text fontWeight="bold" color="gray.500" fontSize=".8rem">
-                  total
-                </Text>
-                <Text ml={'5'} fontWeight="bold" color="gray.500" fontSize=".8rem">
-                  ${total}
                 </Text>
               </Stack>
             </Flex>
