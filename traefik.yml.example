@@ -18,12 +18,12 @@ log:
   # ---
 api:
   dashboard: false # true by default
-  # insecure: true # Don't do this in production!
+  insecure: true # Don't do this in production!
   # Entry Points configuration
   # ---
 entryPoints:
-  # web:
-  #   address: :80
+  web:
+    address: :80
   # (Optional) Redirect to HTTPS
   # ---
   # http:
@@ -31,8 +31,6 @@ entryPoints:
   #     entryPoint:
   #       to: websecure
   #       scheme: https
-  fundease:
-    address: :80
 
 # Configure your CertificateResolver here...
 # ---
