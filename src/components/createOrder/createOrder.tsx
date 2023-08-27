@@ -15,6 +15,15 @@ import Header from './header'
 import Mounts from './mounts'
 import Products from './selectedProducts'
 import { useRouter } from 'next/router'
+import { user } from '@/models/user'
+
+const DEFAULT_USER: user = {
+  name: ' TEST USER',
+  email: 'user@test.com',
+  id: 9999,
+  credit: 100,
+  password: '123456',
+}
 
 function proposeDonation(subtotal) {
   let changeAmmount = subtotal % 10
@@ -48,6 +57,25 @@ export default function CreateOrder() {
       setIsModalOpen(true)
     } else {
       // Complete the order
+      fetch('http://fundease.duckdns.org:3001/api/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: DEFAULT_USER.id,
+          payment_type: 'efectivo',
+          cash: total,
+          Billdenomination: 'USD',
+          amount: total,
+          suggest_donation: proposeDonation(subtotal) !== 0,
+          donation: isDonationEnabled,
+          donation_data: {
+            amount: gift,
+          },
+          organization_id: 2,
+        }),
+      })
     }
   }
 
