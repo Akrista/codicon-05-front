@@ -7,6 +7,7 @@ import {
   Button,
   Image,
   Container,
+  Heading,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import ONGsModal from '../ONGsModal'
@@ -14,6 +15,7 @@ import { ONG } from '@/models/ong'
 
 interface DonateAreaProps {
   onToggleDonation: (isChecked: boolean) => void
+  gift: number
 }
 
 export default function DonateArea({ onToggleDonation, gift }: DonateAreaProps) {
@@ -149,7 +151,7 @@ export default function DonateArea({ onToggleDonation, gift }: DonateAreaProps) 
             setShowONGsModal(!showONGsModal)
           }}
         />
-      </Flex>
+      </Container>
       {isChecked ? (
         <SlideFade in={isChecked} offsetY="20px">
           <Box p="20px" color="white" mt="4" bg="teal.500" rounded="md" shadow="md">
@@ -238,6 +240,6 @@ export default function DonateArea({ onToggleDonation, gift }: DonateAreaProps) 
           setShowONGsModal(!showONGsModal)
         }}
       />
-    </Container>
+    </>
   )
 }
