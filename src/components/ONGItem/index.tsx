@@ -7,7 +7,7 @@ interface ONGItemProps extends Omit<ONG, 'id'> {
 }
 
 const ONGItem: FC<ONGItemProps> = (props) => {
-  const { logo, name, description } = props
+  const { name, description } = props
   const { getInputProps, getRadioProps } = useRadio(props as any)
 
   const input = getInputProps()
@@ -39,10 +39,16 @@ const ONGItem: FC<ONGItemProps> = (props) => {
         }}
       >
         <Flex alignItems="center" gap={2} justifyContent="center">
-          <Avatar src={logo} boxShadow={checked ? '0 0 0 3px #37b38f' : undefined} />
+          <Avatar
+            src="https://static.vecteezy.com/system/resources/previews/019/869/277/non_2x/ong-letter-logo-design-on-white-background-ong-creative-circle-letter-logo-concept-ong-letter-design-vector.jpg"
+            marginRight="6px"
+            boxShadow={checked ? '0 0 0 3px #37b38f' : undefined}
+          />
           <Flex flexDirection="column">
             <Text fontWeight={checked ? 600 : 400}>{name}</Text>
-            <Text noOfLines={3}>{description}</Text>
+            <Text fontWeight={300} noOfLines={3} fontSize="sm">
+              {description}
+            </Text>
           </Flex>
         </Flex>
       </Card>

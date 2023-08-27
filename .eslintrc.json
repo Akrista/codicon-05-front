@@ -15,8 +15,7 @@
       "asyncArrow": "always"
     }],
     "multiline-ternary": ["error", "never"]
-  },
-  "globals": {
+  },"globals": {
     "RequestInit": true
   }
 }
