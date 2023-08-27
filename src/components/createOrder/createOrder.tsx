@@ -26,7 +26,7 @@ const DEFAULT_USER: user = {
 }
 
 function proposeDonation(subtotal: number): number {
-  let changeAmmount = subtotal % 10;
+  let changeAmmount = subtotal % 10
 
   if (changeAmmount > 5) {
     changeAmmount -= 5
@@ -35,13 +35,13 @@ function proposeDonation(subtotal: number): number {
   if (changeAmmount === 0 || changeAmmount === 1 || changeAmmount === 2) {
     return 0
   } else if (changeAmmount < 1) {
-    return Number((1 - changeAmmount).toFixed(2));  
+    return Number((1 - changeAmmount).toFixed(2))
   } else if (changeAmmount < 2) {
-    return Number((2 - changeAmmount).toFixed(2));
+    return Number((2 - changeAmmount).toFixed(2))
   } else if (changeAmmount < 3) {
-    return Number((3 - changeAmmount).toFixed(2));
+    return Number((3 - changeAmmount).toFixed(2))
   } else {
-    return Number((5 - changeAmmount).toFixed(2));
+    return Number((5 - changeAmmount).toFixed(2))
   }
 }
 
@@ -58,7 +58,7 @@ export default function CreateOrder() {
       setIsModalOpen(true)
     } else {
       // Complete the order
-      fetch('http://fundease.duckdns.org:3001/api/pay', {
+      /* fetch('http://fundease.duckdns.org:3001/api/pay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,8 @@ export default function CreateOrder() {
           },
           organization_id: 2,
         }),
-      })
+      })*/
+      router.push('/success')
     }
   }
 
