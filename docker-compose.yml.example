@@ -1,0 +1,40 @@
+version: '3'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:3000'
+    restart: unless-stopped
+#     networks:
+#       - public
+#   traefik:
+#     image: 'traefik'
+#     container_name: 'traefik'
+#     ports:
+#       #- '443:443'
+#       # (Optional) Expose Dashboard
+#       #- '8085:8080' # Don't do this in production!
+#       # Ports for apps i use, this should change later
+#       - '80:80'
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#       - ./config/traefik.yml:/etc/traefik/traefik.yml
+#       - ./data:/etc/traefik
+#       - ./certs:/le
+#     labels:
+#       - 'traefik.enable=true'
+#       - 'traefik.http.routers.traefik.rule=Host(`${PUBLIC_URL}`)'
+#       - 'traefik.http.routers.traefik.service=api@internal'
+#       # - "traefik.http.routers.heimdall.tls=true"
+#       # - "traefik.http.routers.traefik.tls.certresolver=leresolver"
+#       # - 'traefik.http.routers.traefik.entrypoints=traefikdash'
+#       # - "traefik.http.routers.traefik.middlewares=authtraefik"
+#       # - "traefik.http.middlewares.authtraefik.basicauth.users=admin:password"
+#     restart: unless-stopped
+#     networks:
+#       - public
+
+# networks:
+#   public:
