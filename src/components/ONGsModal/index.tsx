@@ -23,6 +23,7 @@ interface ONGsModalProps {
   onSelectONG: (ong: ONG) => void
 }
 const apiURL = process.env.API_ENDPOINT
+
 const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [checked, setChecked] = useState<number | undefined>(undefined)
   const [ongData, setONGData] = useState<ONG[]>([])
@@ -42,10 +43,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   }
 
   const handleSelectONG = () => {
-    const foundONG = ongData.find(({ id }) => {
-      return id === checked
-    })
-
+    const foundONG = ongData.find(({ id }) => id === checked)
     if (foundONG) onSelectONG(foundONG)
 
     setChecked(undefined)
@@ -88,7 +86,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
                       key={id}
                       name={name}
                       description={description}
-                      isChecked={Number(checked) === id}
+                      isChecked={checked === id}
                     />
                   )
                 })}

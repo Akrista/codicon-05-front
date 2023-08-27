@@ -23,8 +23,17 @@ import { useFetch } from '@/hooks/useFetch'
 
 import Miserly1 from '@/assets/miserly1.gif'
 import Miserly2 from '@/assets/miserly2.gif'
+import { combo } from '@/models/combo'
 
 const randomSrc = Math.random() < 0.5 ? Miserly1 : Miserly2
+const selectedComboData = localStorage.getItem('selectedCombo')
+let selectedCombo
+
+if (selectedComboData) {
+  selectedCombo = JSON.parse(selectedComboData)
+} else {
+  router.push('/combo')
+}
 
 function proposeDonation(subtotal: number): number {
   let changeAmmount = subtotal % 10
@@ -45,28 +54,20 @@ function proposeDonation(subtotal: number): number {
   }
 }
 
-export default function CreateOrder() {
+function CreateOrder() {
   const [ongData, setONGData] = useState<ONG[]>([])
+  const apiURL = process.env.API_ENDPOINT
 
   useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
     onSuccess: (data) => {
       setONGData(data)
-      // alert('het')
     },
   })
+
   const [isButtonVisible, setIsButtonVisible] = useState(true)
 
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false)
   const router = useRouter()
-
-  const selectedComboData = localStorage.getItem('selectedCombo')
-  let selectedCombo
-
-  if (selectedComboData) {
-    selectedCombo = JSON.parse(selectedComboData)
-  } else {
-    // Handle the case where the selected combo data is not found in localStorage
-  }
 
   if (selectedCombo) {
     var { subtotal, store } = selectedCombo
@@ -141,10 +142,14 @@ export default function CreateOrder() {
           <ModalHeader>¿Estás seguro?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            ¿Realmente estás seguro de no querer apoyar a quienes te necesitan?
+            Aunque sea poco, suma a quienes mas lo necesitan, estas seguro?
           </ModalBody>
           <ModalFooter justifyContent={'space-around'}>
-            <Button colorScheme="red" onClick={handleConfirmNoDonation} mr={3}>
+            <Button
+              backgroundColor="gray.300"
+              onClick={handleConfirmNoDonation}
+              mr={3}
+            >
               No quiero donar
             </Button>
             <Button
@@ -155,7 +160,7 @@ export default function CreateOrder() {
                 setIsDonationEnabled(true)
               }}
             >
-              Cambie de opinión
+              Quiero donar
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -164,15 +169,15 @@ export default function CreateOrder() {
       <Modal isOpen={isSecondModalOpen} onClose={() => setIsSecondModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>¿Estás seguro?</ModalHeader>
+          <ModalHeader>¿ Realmente estás seguro?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image alt="Codicon" src={randomSrc.src}></Image>
+            <Image borderRadius={'20px'} alt="Codicon" src={randomSrc.src}></Image>
           </ModalBody>
           <ModalFooter justifyContent={'space-around'}>
             {isButtonVisible ? (
               <Button
-                colorScheme="red"
+                backgroundColor="gray.300"
                 onClick={() => setIsButtonVisible(false)}
                 fontSize={9}
               >
@@ -196,3 +201,5 @@ export default function CreateOrder() {
     </VStack>
   )
 }
+
+export default CreateOrder
