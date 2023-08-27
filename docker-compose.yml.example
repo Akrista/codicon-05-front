@@ -9,7 +9,7 @@ services:
       - "traefik.http.routers.fundease.entrypoints=web"
       - "traefik.http.routers.fundease.rule=Host(`your.domain.com`)"
       - "traefik.http.routers.fundease.service=fundease"
-      - "traefik.http.services.fundease.loadbalancer.server.port=80"
+      - "traefik.http.services.fundease.loadbalancer.server.port=3000"
     restart: unless-stopped
     networks:
       - public
