@@ -25,8 +25,9 @@ const DEFAULT_USER: user = {
   password: '123456',
 }
 
-function proposeDonation(subtotal) {
-  let changeAmmount = subtotal % 10
+function proposeDonation(subtotal: number): number {
+  let changeAmmount = subtotal % 10;
+
   if (changeAmmount > 5) {
     changeAmmount -= 5
   }
@@ -34,20 +35,20 @@ function proposeDonation(subtotal) {
   if (changeAmmount === 0 || changeAmmount === 1 || changeAmmount === 2) {
     return 0
   } else if (changeAmmount < 1) {
-    return 1 - changeAmmount
+    return Number((1 - changeAmmount).toFixed(2));  
   } else if (changeAmmount < 2) {
-    return 2 - changeAmmount
+    return Number((2 - changeAmmount).toFixed(2));
   } else if (changeAmmount < 3) {
-    return 3 - changeAmmount
+    return Number((3 - changeAmmount).toFixed(2));
   } else {
-    return 5 - changeAmmount
+    return Number((5 - changeAmmount).toFixed(2));
   }
 }
 
 export default function CreateOrder() {
   const router = useRouter()
   const { subtotal, store } = router.query
-  const gift = proposeDonation(subtotal)
+  const gift = proposeDonation(Number(subtotal))
   const total = Number(subtotal) + Number(gift)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDonationEnabled, setIsDonationEnabled] = useState(true)
@@ -104,7 +105,7 @@ export default function CreateOrder() {
       >
         Completar Pedido
       </Button>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(true)}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>¿Estás seguro?</ModalHeader>
