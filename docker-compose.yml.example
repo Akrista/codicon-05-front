@@ -12,6 +12,7 @@ services:
       - "traefik.http.routers.fundease.entrypoints=web"
       - "traefik.http.routers.fundease.rule=Host(`${PUBLIC_URL}`)"
       - "traefik.http.services.fundease.loadbalancer.server.port=80"
+      - "traefik.http.services.whoami.loadbalancer.server.url=${PUBLIC_URL}"
     restart: unless-stopped
     networks:
       - public
