@@ -16,7 +16,9 @@ const ComboItem: FC<ComboItemProps> = (props) => {
   const radio = getRadioProps()
   const checked = props.isChecked || false
   return (
-    <Link href="/order">
+    <Link
+      href={`/order?subtotal=${subtotal}&total=${total}&gift=${gift}&store=${store}`}
+    >
       <Box as="label" width={'100%'}>
         <input {...input} />
 

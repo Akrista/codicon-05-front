@@ -77,7 +77,7 @@ export default function ComboList() {
 
   console.log(checked)
   return (
-    <Container maxW="sm">
+    <Container maxW="sm" h={'100vh'} backgroundColor={'white'}>
       {DEFAULT_COMBOS.map(({ name, subtotal, total, gift, logo, id, store }) => {
         const radio = getRadioProps({ value: id })
         return (

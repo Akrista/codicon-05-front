@@ -1,7 +1,7 @@
 import { Heading, Stack, Image, Text, Button } from '@chakra-ui/react'
 import Link from 'next/link'
 
-export default function Header() {
+export default function Header({ store }) {
   return (
     <>
       <Stack
@@ -35,7 +35,7 @@ export default function Header() {
             //  my="2"
           />
           <Stack gap={0} justifyContent="">
-            <Heading fontSize="1rem">Abruzzos Pizzeria</Heading>
+            <Heading fontSize="1rem">{store}</Heading>
             <Text fontWeight="bold" color="gray.500" fontSize=".6rem">
               PIZZA - ITALIANA - BEBIDAS
             </Text>

@@ -1,6 +1,6 @@
 import { Stack, Text, Container } from '@chakra-ui/react'
 
-export default function mountsArea() {
+export default function mountsArea({ subtotal, total, gift, isDonationEnabled }) {
   return (
     <>
       <Container borderTop={'3px solid '} borderColor={'gray.200'} padding={'3'}>
@@ -15,7 +15,7 @@ export default function mountsArea() {
               Subtotal
             </Text>
             <Text fontWeight="bold" color="gray.500" fontSize=".8rem">
-              5.99$
+              ${subtotal}
             </Text>
           </Stack>
           <Stack
@@ -57,6 +57,21 @@ export default function mountsArea() {
               0.24$
             </Text>
           </Stack>
+          {isDonationEnabled ? (
+            <Stack
+              mb="1"
+              spacing={0}
+              direction={'row'}
+              justifyContent={'space-between'}
+            >
+              <Text color="gray.500" fontSize=".8rem">
+                Donativo
+              </Text>
+              <Text color="gray.500" fontSize=".8rem">
+                ${gift}
+              </Text>
+            </Stack>
+          ) : null}
         </Stack>
         <Stack borderTop={'2px solid '} borderColor={'gray.200'}>
           <Stack
@@ -67,15 +82,21 @@ export default function mountsArea() {
             alignItems={'center'}
           >
             <Text fontWeight="bold" color="#5e0e8b" fontSize=".8rem">
-              Subtotal
+              Total
             </Text>
-            <Text fontWeight="bold" color="#5e0e8b" fontSize="1rem">
-              5.99$
-            </Text>
+            {isDonationEnabled ? (
+              <Text fontWeight="bold" color="#5e0e8b" fontSize="1rem">
+                ${total}
+              </Text>
+            ) : (
+              <Text fontWeight="bold" color="#5e0e8b" fontSize="1rem">
+                ${subtotal}
+              </Text>
+            )}
           </Stack>
           <Text>
-            llevar tu total a 6.$ puedes donar X cantidad de dinero para la
-            organizacion que quieras y
+            puedes llevar tu total a {total} donando ${gift} para la organizacion que
+            quieras
           </Text>
         </Stack>
       </Container>
