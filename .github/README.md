@@ -70,7 +70,7 @@ Para adicionar dicho servicio, asegurese de:
 
 1. Comentar los puertos del app
 2. Descomentar las labels, networks y el contenedor de traefik
-3. Asignar el ip de su URL Publica para el app en el label `traefik.http.routers.fundease.rule=Host(`your.domain.com`)`
+3. Asignar el ip de su URL Publica para el app en el label ``traefik.http.routers.fundease.rule=Host(`your.domain.com`)``
 4. Cree una carpeta llamada "config" en el root de este repo
 5. Cree una copia del archivo traefik.yml.example en la carpeta recien creada, el archivo debe llamarse "traefik.yml"
 6. Ejecute el script `run.sh`
