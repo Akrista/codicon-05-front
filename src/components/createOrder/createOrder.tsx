@@ -57,9 +57,9 @@ function CreateOrder() {
   }, [combo, router])
 
   const [ongData, setONGData] = useState<ONG[]>([])
-  // const apiURL = process.env.API_ENDPOINT
+  const apiUrl = process.env.API_ENDPOINT
 
-  useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
+  useFetch<ONG[]>(`${apiUrl}/api/organizations`, {
     onSuccess: (data) => {
       setONGData(data)
     },
@@ -81,26 +81,6 @@ function CreateOrder() {
     if (!isDonationEnabled) {
       setIsModalOpen(true)
     } else {
-      // Complete the order
-      /*  fetch('http://fundease.duckdns.org:3001/api/pay', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: DEFAULT_USER.id,
-          payment_type: 'efectivo',
-          cash: total,
-          Billdenomination: 'USD',
-          amount: total,
-          suggest_donation: proposeDonation(subtotal) !== 0,
-          donation: isDonationEnabled,
-          donation_data: {
-            amount: gift,
-          },
-          organization_id: 2,
-        }),
-      }) */
       router.push('/success')
     }
   }

@@ -26,6 +26,7 @@ interface ONGsModalProps {
 const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
   const [checked, setChecked] = useState<number | undefined>(undefined)
   const [ongData, setONGData] = useState<ONG[]>([])
+  const apiUrl = process.env.API_ENDPOINT
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     value: checked?.toString(),
@@ -49,7 +50,7 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
     handleClose()
   }
 
-  useFetch<ONG[]>('http://fundease.duckdns.org:3001/api/organizations', {
+  useFetch<ONG[]>(`${apiUrl}/api/organizations`, {
     onSuccess: (data) => {
       setONGData(data)
     },

@@ -4,32 +4,33 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    #ports:
-    #  - "3000:3000"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.fundease.entrypoints=web"
-      - "traefik.http.routers.fundease.rule=Host(`your.domain.com`)"
-      - "traefik.http.routers.fundease.service=fundease"
-      - "traefik.http.services.fundease.loadbalancer.server.port=3000"
-    restart: unless-stopped
-    networks:
-      - public
-  traefik:
-    image: 'traefik'
-    container_name: 'traefik'
     ports:
-      - '80:80'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./config/traefik.yml:/etc/traefik/traefik.yml
-      - ./data:/etc/traefik
-      - ./certs:/le
+      - "3000:3000"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.fundease.entrypoints=web"
+    #   - "traefik.http.routers.fundease.rule=Host(`your.domain.com`)"
+    #   - "traefik.http.routers.fundease.service=fundease"
+    #   - "traefik.http.services.fundease.loadbalancer.server.port=3000"
     restart: unless-stopped
-    networks:
-      - public
 
-networks:
-  public:
-    external:
-      true
+#     networks:
+#       - public
+#   traefik:
+#     image: 'traefik'
+#     container_name: 'traefik'
+#     ports:
+#       - '80:80'
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#       - ./config/traefik.yml:/etc/traefik/traefik.yml
+#       - ./data:/etc/traefik
+#       - ./certs:/le
+#     restart: unless-stopped
+#     networks:
+#       - public
+#
+# networks:
+#   public:
+#     external:
+#       true

@@ -23,6 +23,7 @@ interface LoginForm {
 }
 
 export default function Login() {
+  const apiUrl = process.env.API_ENDPOINT
   const {
     handleSubmit,
     register,
@@ -37,7 +38,7 @@ export default function Login() {
   }, [user, router])
 
   const onSubmit: SubmitHandler<LoginForm> = async (formData) => {
-    const response = await fetch('http://fundease.duckdns.org:3001/api/auth/login', {
+    const response = await fetch(`${apiUrl}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

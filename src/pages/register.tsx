@@ -39,8 +39,9 @@ export default function Register() {
   }, [user, router])
 
   const onSubmit: SubmitHandler<RegisterForm> = async (formData) => {
+  const apiUrl = process.env.API_ENDPOINT
     const response = await fetch(
-      'http://fundease.duckdns.org:3001/api/auth/register',
+      `${apiUrl}/api/auth/register`,
       {
         method: 'POST',
         headers: {
