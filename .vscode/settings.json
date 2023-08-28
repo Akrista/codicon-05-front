@@ -4,7 +4,7 @@
     "json",
     "js",
     "ts",
-    "tss",
+    "tsx",
     "yml"
   ],
   "editor.codeActionsOnSave": {
