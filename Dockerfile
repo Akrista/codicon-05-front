@@ -1,11 +1,3 @@
-# FROM node:16-alpine
-# RUN mkdir -p /app
-# WORKDIR /app
-# COPY . .
-# RUN npm install
-# EXPOSE 3000
-# CMD ["npm", "run", "dev"]
-
 FROM node:alpine as BUILD_IMAGE
 
 WORKDIR /app
