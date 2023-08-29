@@ -26,6 +26,12 @@ Este proyecto fue construido por un grupo multidisciplinario de jovenes Venezola
 
 El talento combinado y visión de este grupo nos ha permitido mostrar nuestra visión de una propuesta viable para el mercado de mobile apps en Venezuela donde se ofrecen beneficios a Organizaciones Sin Fines de Lucro.
 
+## Demo
+
+Puede probar una demo del proyecto aca: [https://akrista.github.io/codicon-05-front/order](https://akrista.github.io/codicon-05-front)
+
+![demo video](./demo.webm)
+
 ## Probar el Proyecto
 
 Recuerde copiar el archivo `.env.example` a `.env` y configurar el endpoint asociado al ![backend del app](https://github.com/Akrista/codicon-05-back).
