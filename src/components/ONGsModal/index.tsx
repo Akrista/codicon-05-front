@@ -54,9 +54,6 @@ const ONGsModal: FC<ONGsModalProps> = ({ isOpen, onToggle, onSelectONG }) => {
     onSuccess: (data) => {
       setONGData(data)
     },
-    onError: (error) => {
-      console.log(error)
-    },
   })
 
   return (

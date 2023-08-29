@@ -63,9 +63,6 @@ function CreateOrder() {
     onSuccess: (data) => {
       setONGData(data)
     },
-    onError: (error) => {
-      console.log(error)
-    },
   })
 
   const [isButtonVisible, setIsButtonVisible] = useState(true)
