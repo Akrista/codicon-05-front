@@ -30,7 +30,7 @@ El talento combinado y visión de este grupo nos ha permitido mostrar nuestra vi
 
 Puede probar una demo del proyecto aca: [https://akrista.github.io/codicon-05-front/order](https://akrista.github.io/codicon-05-front)
 
-![demo video](./demo.webm)
+[demo.webm](https://github.com/Akrista/codicon-05-front/assets/23145794/1c44bbfd-1a1e-46a8-b6cc-111d51396780)
 
 ## Probar el Proyecto
 
